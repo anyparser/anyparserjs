@@ -1,0 +1,12 @@
+node_modules
+dist
+.*
+!.gitignore
+!.npmignore
+!.eslintignore
+!.eslintrc.json
+!.vscode
+!.github
+coverage
+!.github
+!.nvmrc

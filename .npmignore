@@ -1,0 +1,8 @@
+node_modules
+.*
+coverage
+examples
+docs
+tsconfig.json
+tsup.config.mts
+vitest.config.mts

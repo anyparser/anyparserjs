@@ -1,0 +1,337 @@
+{
+  "extends": [
+    "standard",
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json",
+    "sourceType": "module",
+    "ecmaVersion": "latest"
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {
+        "alwaysCreateModule": true
+      }
+    }
+  },
+  "rules": {
+    "brace-style": [
+      "error",
+      "1tbs",
+      {
+        "allowSingleLine": false
+      }
+    ],
+    "curly": [
+      "error",
+      "all"
+    ],
+    "no-else-return": "error",
+    "arrow-body-style": "off",
+    "implicit-arrow-linebreak": "off",
+    "arrow-parens": [
+      "error",
+      "as-needed",
+      {
+        "requireForBlockBody": true
+      }
+    ],
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": ":matches(FunctionDeclaration, FunctionExpression, ArrowFunctionExpression) > TSTypeAnnotation > TSTypeLiteral",
+        "message": "Do not use inline types for return types, define a separate type alias or interface instead."
+      },
+      {
+        "selector": ":matches(FunctionDeclaration, FunctionExpression, ArrowFunctionExpression) > TSTypeAnnotation > TSTypeLiteral > TSTypeParameterInstantiation",
+        "message": "Do not use inline types for return types within generic types, define a separate type alias or interface instead."
+      },
+      {
+        "selector": ":matches(TSTypeParameterInstantiation) > :matches(TSTypeLiteral, TSIntersectionType, TSUnionType)",
+        "message": "Do not use inline types for return types within generic types, define a separate type alias or interface instead."
+      }
+    ],
+    "padding-line-between-statements": [
+      "error",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "block"
+      },
+      {
+        "blankLine": "always",
+        "prev": "block",
+        "next": "*"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "block-like"
+      },
+      {
+        "blankLine": "always",
+        "prev": "block-like",
+        "next": "*"
+      },
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      }
+    ],
+    "camelcase": [
+      "error",
+      {
+        "allow": [
+          "UPPER_CASE"
+        ],
+        "properties": "always"
+      }
+    ],
+    "object-curly-newline": "error",
+    "import/extensions": [
+      "error",
+      "always",
+      {
+        "ignorePackages": true
+      }
+    ],
+    "max-lines": [
+      "error",
+      {
+        "max": 1000 // todo: decrease this to 180 later
+      }
+    ],
+    "complexity": [
+      "error",
+      15
+    ],
+    "no-multi-spaces": [
+      "error",
+      {
+        "ignoreEOLComments": false
+      }
+    ],
+    "operator-linebreak": [
+      "error",
+      "after",
+      {
+        "overrides": {
+          "=": "none"
+        }
+      }
+    ],
+    "no-caller": "error",
+    "no-constant-condition": [
+      "error",
+      {
+        "checkLoops": false
+      }
+    ],
+    "no-eval": "error",
+    "no-extra-bind": "error",
+    "no-new-func": "error",
+    "no-new-wrappers": "error",
+    "no-restricted-globals": [
+      "error",
+      {
+        "name": "setInterval"
+      },
+      {
+        "name": "clearInterval"
+      },
+      {
+        "name": "setImmediate"
+      },
+      {
+        "name": "clearImmediate"
+      }
+    ],
+    "no-template-curly-in-string": "error",
+    "no-throw-literal": "error",
+    "no-undef-init": "error",
+    "no-var": "error",
+    "object-shorthand": "error",
+    "prefer-const": "error",
+    "prefer-object-spread": "error",
+    "unicode-bom": [
+      "error",
+      "never"
+    ],
+    "no-unused-expressions": "error",
+    "eqeqeq": "error",
+    "@typescript-eslint/no-misused-promises": [
+      "error",
+      {
+        "checksVoidReturn": false
+      }
+    ],
+    "no-unused-vars": 0,
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true
+      }
+    ],
+    "no-redeclare": "off",
+    "@typescript-eslint/no-redeclare": [
+      "error",
+      {
+        "ignoreDeclarationMerge": true
+      }
+    ],
+    "no-undef": "off",
+    "no-shadow": "off",
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": [
+      "error",
+      "nofunc"
+    ],
+    "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/await-thenable": "error",
+    "@typescript-eslint/require-await": "error",
+    "@typescript-eslint/consistent-type-exports": "error",
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        "prefer": "type-imports"
+      }
+    ],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "typeLike",
+        "format": [
+          "PascalCase"
+        ],
+        "filter": {
+          "regex": "^(__String|[A-Za-z]+_[A-Za-z]+)$",
+          "match": false
+        }
+      },
+      {
+        "selector": "interface",
+        "format": [
+          "PascalCase"
+        ],
+        "filter": {
+          "regex": "^I(Arguments|TextWriter|O([A-Z][a-z]+[A-Za-z]*)?)$",
+          "match": false
+        }
+      },
+      {
+        "selector": "variable",
+        "format": [
+          "camelCase",
+          "PascalCase",
+          "UPPER_CASE"
+        ],
+        "leadingUnderscore": "allow",
+        "filter": {
+          "regex": "^(_{1,2}filename|_{1,2}dirname|_+|[A-Za-z]+_[A-Za-z]+)$",
+          "match": false
+        }
+      },
+      {
+        "selector": "function",
+        "format": [
+          "camelCase",
+          "PascalCase"
+        ],
+        "leadingUnderscore": "allow",
+        "filter": {
+          "regex": "^[A-Za-z]+_[A-Za-z]+$",
+          "match": false
+        }
+      },
+      {
+        "selector": "parameter",
+        "format": [
+          "camelCase"
+        ],
+        "leadingUnderscore": "allow",
+        "filter": {
+          "regex": "^(_+|[A-Za-z]+_[A-Z][a-z]+)$",
+          "match": false
+        }
+      },
+      {
+        "selector": "method",
+        "format": [
+          "camelCase",
+          "PascalCase"
+        ],
+        "leadingUnderscore": "allow",
+        "filter": {
+          "regex": "^([0-9]+|[A-Za-z]+_[A-Za-z]+)$",
+          "match": false
+        }
+      },
+      {
+        "selector": "memberLike",
+        "format": [
+          "camelCase"
+        ],
+        "leadingUnderscore": "allow",
+        "filter": {
+          "regex": "^([0-9]+|[A-Za-z]+_[A-Za-z]+)$",
+          "match": false
+        }
+      },
+      {
+        "selector": "enumMember",
+        "format": [
+          "camelCase",
+          "PascalCase"
+        ],
+        "leadingUnderscore": "allow",
+        "filter": {
+          "regex": "^[A-Za-z]+_[A-Za-z]+$",
+          "match": false
+        }
+      },
+      {
+        "selector": "property",
+        "format": [
+          "UPPER_CASE",
+          "camelCase",
+          "PascalCase"
+        ]
+      }
+    ],
+    "@typescript-eslint/unified-signatures": "error",
+    "@typescript-eslint/no-unused-expressions": [
+      "error",
+      {
+        "allowTernary": true
+      }
+    ],
+    "@typescript-eslint/ban-ts-comment": "error",
+    "@typescript-eslint/class-literal-property-style": "error",
+    "@typescript-eslint/consistent-indexed-object-style": "error",
+    "@typescript-eslint/no-duplicate-enum-values": "error",
+    "@typescript-eslint/no-empty-function": "error",
+    "@typescript-eslint/no-namespace": "error",
+    "@typescript-eslint/no-non-null-asserted-optional-chain": "error",
+    "@typescript-eslint/no-var-requires": "error",
+    "@typescript-eslint/no-empty-interface": "error",
+    "@typescript-eslint/no-inferrable-types": "error",
+    "@typescript-eslint/consistent-type-assertions": "error",
+    "@typescript-eslint/no-array-constructor": "error",
+    "@typescript-eslint/no-extraneous-class": "error",
+    "@typescript-eslint/no-for-in-array": "error",
+    "@typescript-eslint/no-misused-new": "error",
+    "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/no-unnecessary-qualifier": "error",
+    "@typescript-eslint/no-unnecessary-type-assertion": "error",
+    "@typescript-eslint/prefer-function-type": "error",
+    "@typescript-eslint/prefer-includes": "error",
+    "@typescript-eslint/prefer-string-starts-ends-with": "error",
+    "@typescript-eslint/promise-function-async": "error",
+    "@typescript-eslint/require-array-sort-compare": "error"
+  }
+}

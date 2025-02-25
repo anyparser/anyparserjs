@@ -1,0 +1,52 @@
+{
+  "compilerOptions": {
+    /* Base Options: */
+    "target": "ES2015",
+    "module": "Node16",
+    "lib": [
+      "es2022"
+    ],
+    "moduleResolution": "node16",
+    "moduleDetection": "force",
+    "esModuleInterop": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "verbatimModuleSyntax": true,
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "rootDir": ".",
+    "baseUrl": ".",
+    "paths": {
+      "@src/*": [
+        "src/*"
+      ],
+      "@/config/*": [
+        "src/config/*"
+      ],
+      "@anyparser/core": [
+        "src/index.ts"
+      ],
+    }
+  },
+  "include": [
+    "src/**/*",
+    "examples/**/*",
+    "vitest.config.mts",
+    "tsup.config.mts",
+    "tests/**/*"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist",
+    ".*"
+  ]
+}

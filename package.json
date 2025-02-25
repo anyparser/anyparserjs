@@ -1,0 +1,92 @@
+{
+  "name": "@anyparser/core",
+  "license": "Apache-2.0",
+  "description": "The `@anyparser/core` Typescript SDK enables developers to quickly extract structured data from a wide variety of file formats like PDFs, images, websites, audio, and videos.",
+  "keywords": [
+    "anyparser",
+    "ai",
+    "artificial-intelligence",
+    "rag",
+    "retrieval-augmented-generation",
+    "graph-rag",
+    "cag",
+    "cache-augmented-generation",
+    "pdf",
+    "pdf-processing",
+    "pdf-extraction",
+    "ms-office",
+    "microsoft-office",
+    "microsoft-word",
+    "microsoft-excel",
+    "microsoft-powerpoint",
+    "document-extraction",
+    "ocr",
+    "object-character-recognition",
+    "text-recognition",
+    "knowledgebase",
+    "knowledge-graph",
+    "etl",
+    "etl-pipeline",
+    "etl-framework",
+    "langchain",
+    "n8n",
+    "crewai",
+    "llamaindex",
+    "typescript",
+    "ts"
+  ],
+  "homepage": "https://github.com/anyparser/anyparserjs",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "files": [
+    "dist"
+  ],
+  "type": "module",
+  "devDependencies": {
+    "@arethetypeswrong/cli": "^0.17.4",
+    "@changesets/cli": "^2.28.1",
+    "@types/node": "^22.13.5",
+    "@typescript-eslint/eslint-plugin": "^8.24.1",
+    "@typescript-eslint/parser": "^8.24.1",
+    "@vitest/coverage-v8": "^3.0.6",
+    "eslint": "^8.57.1",
+    "eslint-config-standard": "^17.1.0",
+    "eslint-import-resolver-typescript": "^3.8.3",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-n": "^16.6.2",
+    "eslint-plugin-promise": "^6.6.0",
+    "ts-node": "^10.9.2",
+    "tsup": "^2.0.3",
+    "typescript": "^5.5.4",
+    "vite": "^6.1.1",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.0.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "pre:compile": "npm run lint && npm run test",
+    "start:compile": "tsup",
+    "post:compile": "npx --yes @arethetypeswrong/cli --pack .",
+    "build": "npm run pre:compile && npm run start:compile && npm run post:compile",
+    "lint": "tsc && eslint src --ext .ts --fix",
+    "test": "vitest run",
+    "coverage": "vitest run --coverage",
+    "check:state": "git diff --quiet && git diff --cached --quiet || { echo 'Git working directory is not clean. Please commit or stash changes before publishing.'; exit 1; }",
+    "check:branch": "if [ $(git symbolic-ref --short HEAD) != 'master' ]; then echo 'You must be on the master branch to publish.'; exit 1; fi",
+    "prepublishOnly": "npm run check:state && npm run check:branch && npm run build"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "volta": {
+    "node": "20.18.0"
+  }
+}

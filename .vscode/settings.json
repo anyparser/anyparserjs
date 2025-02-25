@@ -1,0 +1,53 @@
+{
+  "editor.tabSize": 2,
+  "editor.foldingStrategy": "indentation",
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": false,
+  "editor.autoIndent": "none",
+  "editor.formatOnSave": false,
+  "editor.formatOnSaveMode": "file",
+  "editor.wordWrap": "off",
+  "javascript.suggestionActions.enabled": false,
+  "files.watcherExclude": {
+    "**/.temp": true
+  },
+  "search.exclude": {
+    "**/.temp": true
+  },
+  "[markdown][plaintext][text][restructuredtext]": {
+    "editor.wordWrap": "on"
+  },
+  "[json]": {
+    "editor.quickSuggestions": {
+      "strings": true
+    },
+    "editor.suggest.insertMode": "replace",
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  "[javascript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "[typescript]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "dbaeumer.vscode-eslint"
+  },
+  "editor.padding.top": 24,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "terminal.integrated.scrollback": 500000,
+  "problems.defaultViewMode": "table",
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "editor.wordWrapColumn": 150,
+  "files.associations": {
+    "fcntl.h": "c",
+    "errno.h": "c",
+    "stat.h": "c",
+    "seccomp_filter.h": "c",
+    "utils.h": "c"
+  },
+  "workbench.sideBar.location": "right",
+  "editor.mouseWheelZoom": true,
+  "explorer.compactFolders": false,
+  "makefile.configureOnOpen": true,
+  "terminal.integrated.fontSize": 14
+}

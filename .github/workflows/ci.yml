@@ -1,0 +1,81 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  pipeline:
+    name: Test ${{ matrix.runtime }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        runtime: ["nodejs-20", "nodejs-23", "bun"]
+    steps:
+      #--------------------------------------------------------------------------
+      #       check-out repo
+      #--------------------------------------------------------------------------
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      #--------------------------------------------------------------------------
+      #       Set up runtime (Node.js, Bun)
+      #--------------------------------------------------------------------------
+      - name: Set up Node.js ${{ matrix.runtime }}
+        if: matrix.runtime == 'nodejs-20' || matrix.runtime == 'nodejs-23'
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.runtime == 'nodejs-20' && '20.x' || matrix.runtime == 'nodejs-23' && '23.x' }}
+          cache: 'npm'
+
+      - name: Set up Bun
+        if: matrix.runtime == 'bun'
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      #--------------------------------------------------------------------------
+      #              Install dependencies (Node.js/Bun only)
+      #--------------------------------------------------------------------------
+      - name: Install dependencies
+        if: matrix.runtime == 'nodejs-20' || matrix.runtime == 'nodejs-23' || matrix.runtime == 'bun'
+        run: npm install
+
+      #--------------------------------------------------------------------------
+      #              Linting (Node.js/Bun only)
+      #--------------------------------------------------------------------------
+      - name: Lint code (Node.js/Bun)
+        if: matrix.runtime == 'nodejs-20' || matrix.runtime == 'nodejs-23' || matrix.runtime == 'bun'
+        run: npm run lint
+
+      #--------------------------------------------------------------------------
+      #              Run test suite with coverage
+      #--------------------------------------------------------------------------
+      - name: Run test suite with coverage
+        if: matrix.runtime == 'nodejs-20' || matrix.runtime == 'nodejs-23'
+        run: npm run coverage
+
+      - name: Run test suite with coverage (Bun)
+        if: matrix.runtime == 'bun'
+        run: bun run coverage
+
+      #--------------------------------------------------------------------------
+      #              Build project
+      #--------------------------------------------------------------------------
+      - name: Build project
+        if: matrix.runtime == 'nodejs-20' || matrix.runtime == 'nodejs-23' || matrix.runtime == 'bun'
+        run: npm run build
+
+      #--------------------------------------------------------------------------
+      #              Type checking
+      #--------------------------------------------------------------------------
+      - name: Type Check
+        if: matrix.runtime == 'nodejs-20' || matrix.runtime == 'nodejs-23' || matrix.runtime == 'bun'
+        run: npm run lint
