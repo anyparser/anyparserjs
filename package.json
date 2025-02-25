@@ -62,7 +62,7 @@
     "eslint-plugin-n": "^16.6.2",
     "eslint-plugin-promise": "^6.6.0",
     "ts-node": "^10.9.2",
-    "tsup": "^2.0.3",
+    "tsup": "^8.3.6",
     "typescript": "^5.5.4",
     "vite": "^6.1.1",
     "vite-tsconfig-paths": "^5.1.4",
