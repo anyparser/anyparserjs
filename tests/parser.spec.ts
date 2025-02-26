@@ -3,6 +3,7 @@ import { Anyparser } from '@src/parser.ts'
 import * as validator from '@src/validator/index.ts'
 import * as form from '@src/form.ts'
 import { wrappedFetch } from '@src/utils/fetcher.ts'
+import { ANYPARSER_VERSION } from '@src/version.ts'
 
 // Mock dependencies
 vi.mock('@src/validator')
@@ -53,7 +54,10 @@ describe('Anyparser', () => {
       {
         method: 'POST',
         body: mockFormData,
-        headers: { Authorization: `Bearer ${mockApiKey}` }
+        headers: {
+          Authorization: `Bearer ${mockApiKey}`,
+          'User-Agent': `@anyparser/core@${ANYPARSER_VERSION}` // eslint-disable-line @typescript-eslint/naming-convention
+        }
       }
     )
 
@@ -75,6 +79,7 @@ describe('Anyparser', () => {
       model: 'text',
       encoding: 'utf-8'
     })
+
     mockBuildForm.mockReturnValue(mockFormData)
     mockWrappedFetch.mockResolvedValue(mockResponse)
 
@@ -83,14 +88,19 @@ describe('Anyparser', () => {
 
     expect(mockValidateAndParse).toHaveBeenCalledWith('test.pdf', mockOptions)
     expect(mockBuildForm).toHaveBeenCalled()
+
     expect(mockWrappedFetch).toHaveBeenCalledWith(
       new URL('/parse/v1', mockApiUrl),
       {
         method: 'POST',
         body: mockFormData,
-        headers: { Authorization: `Bearer ${mockApiKey}` }
+        headers: {
+          Authorization: `Bearer ${mockApiKey}`,
+          'User-Agent': `@anyparser/core@${ANYPARSER_VERSION}` // eslint-disable-line @typescript-eslint/naming-convention
+        }
       }
     )
+
     expect(result).toBe(mockTextResponse)
   })
 
