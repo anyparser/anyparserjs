@@ -1,8 +1,10 @@
 import { wrappedFetch } from '@src/utils/fetcher.ts'
-import type { AnyparserOption, Result } from '@anyparser/core'
+import { ANYPARSER_VERSION } from '@anyparser/core'
 import { buildForm } from './form.ts'
 import { validateAndParse } from './validator/index.ts'
 import { transformToCamel } from '@src/utils/camel-case.ts'
+
+import type { AnyparserOption, Result } from '@anyparser/core'
 
 /**
  * Main class for parsing items using the Anyparser API.
@@ -34,7 +36,12 @@ export class Anyparser {
       method: 'POST',
       body: formData,
       headers: {
-        ...(apiKey ? { Authorization: `Bearer ${apiKey}` } : {})
+        ...(apiKey ?
+            {
+              Authorization: `Bearer ${apiKey}`,
+              'User-Agent': `@anyparser/core@${ANYPARSER_VERSION}` // eslint-disable-line @typescript-eslint/naming-convention
+            } :
+            {})
       }
     }
 

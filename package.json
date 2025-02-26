@@ -36,7 +36,7 @@
     "ts"
   ],
   "homepage": "https://github.com/anyparser/anyparserjs",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "dist/index.js",
   "exports": {
     ".": {
