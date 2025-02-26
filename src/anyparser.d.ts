@@ -1,4 +1,4 @@
-export type { OcrPresetType, OcrLanguageType } from './config/hardcoded'
+import type { OcrPresetType, OcrLanguageType } from './config/hardcoded.ts'
 export type AnyparserFormatType = 'json' | 'markdown' | 'html'
 export type AnyparserModelType = 'text' | 'ocr' | 'vlm' | 'lam' | 'crawler'
 export type AnyparserEncodingType = 'utf-8' | 'latin1'
@@ -117,3 +117,4 @@ export interface AnyparserCrawlResult {
 
 export type AnyparserResult = AnyparserCrawlResult | AnyparserPdfResult | AnyparserResultBase
 export type Result = AnyparserResult[] | string
+export type { OcrPresetType, OcrLanguageType }

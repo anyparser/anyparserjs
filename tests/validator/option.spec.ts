@@ -1,6 +1,7 @@
 import { expect, test, describe } from 'vitest'
 import { validateOption } from '@src/validator/option.ts'
 import { OCR_LANGUAGES, OCR_PRESETS } from '@src/config/hardcoded.ts'
+import type { AnyparserOption } from '@src/anyparser.js'
 
 describe('validateOption', () => {
   test('should validate options with apiUrl', () => {
@@ -21,7 +22,8 @@ describe('validateOption', () => {
     const validOption = {
       apiUrl: new URL('https://api.example.com'),
       ocrLanguage: [Object.values(OCR_LANGUAGES)[0]]
-    }
+    } as AnyparserOption
+
     expect(() => validateOption(validOption)).not.toThrow()
   })
 
@@ -54,7 +56,8 @@ describe('validateOption', () => {
       apiUrl: new URL('https://api.example.com'),
       ocrLanguage: [Object.values(OCR_LANGUAGES)[0]],
       ocrPreset: Object.values(OCR_PRESETS)[0]
-    }
+    } as AnyparserOption
+
     expect(() => validateOption(validOption)).not.toThrow()
   })
 })
