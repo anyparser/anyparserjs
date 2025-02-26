@@ -81,7 +81,8 @@
     "coverage": "vitest run --coverage",
     "check:state": "git diff --quiet && git diff --cached --quiet || { echo 'Git working directory is not clean. Please commit or stash changes before publishing.'; exit 1; }",
     "check:branch": "if [ $(git symbolic-ref --short HEAD) != 'master' ]; then echo 'You must be on the master branch to publish.'; exit 1; fi",
-    "prepublishOnly": "npm run check:state && npm run check:branch && npm run build"
+    "check:changelog": "VERSION=$(node -p \"require('./package.json').version\") && if [ ! -f \"changelogs/v${VERSION}-changelog.md\" ]; then echo \"No changelog file found for version ${VERSION}.\"; exit 1; fi",
+    "prepublishOnly": "npm run check:state && npm run check:branch && npm run check:changelog && npm run build"
   },
   "engines": {
     "node": ">=20"
